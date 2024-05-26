@@ -1,6 +1,6 @@
 # GrayscaleCpp
 
-Versiyon 1 için notlar
+Versiyon 1 notları
 
 ```
 JPG yani jpeg dosyası tercih edilmemesinin sebebi JPEG fortamının sıkıştırma ve
@@ -32,4 +32,16 @@ mavi de en az algılanmasıyla 0.114 değerleriyle çarpılarak resim gri tonlan
 
 Bu programın v1'de yalnızca 1 adet resmi griye dönüştürmesi amaçlanarak float
 kullanılıp yavaşlatılarak olabilecek en basit şekilde çalışması amaçlanmıştır.
+```
+
+Versiyon 2 notları
+
+```
+Programın CPU kullanma yüzdeleri:
+
+<img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/sorunlar/resim001.png" width="500">
+
+Programın tamamlanma süresi:
+
+<img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/sorunlar/resim002.png" width="500">
 ```
