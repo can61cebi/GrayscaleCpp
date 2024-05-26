@@ -44,4 +44,4 @@ Programın CPU kullanma yüzdeleri:
 ```
 Programın tamamlanma süresi:
 ```
-<img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/resim002.png width="500">
+<img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/resim002.png" width="500">
