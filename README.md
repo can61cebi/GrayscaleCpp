@@ -1,5 +1,6 @@
 # GrayscaleCpp
 
+
 Versiyon 1 notları
 
 ```
