@@ -35,13 +35,11 @@ kullanılıp yavaşlatılarak olabilecek en basit şekilde çalışması amaçla
 ```
 
 Versiyon 2 notları
-```
-Programın CPU kullanma yüzdeleri:
-```
+
+> Programın CPU kullanma yüzdeleri:
 
 <img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/resim001.png" width="500">
 
-```
-Programın tamamlanma süresi:
-```
+> Programın tamamlanma süresi:
+
 <img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/resim002.png" width="500">
