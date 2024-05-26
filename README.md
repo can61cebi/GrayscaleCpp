@@ -1,6 +1,7 @@
 # GrayscaleCpp
 
-Versiyon 1 için notlar
+
+Versiyon 1 notları
 
 ```
 JPG yani jpeg dosyası tercih edilmemesinin sebebi JPEG fortamının sıkıştırma ve
