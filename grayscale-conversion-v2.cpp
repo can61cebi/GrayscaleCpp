@@ -59,3 +59,5 @@ int main() {
 
     return 0;
 }
+
+bu programdaki resmi griye dönüştürme işini fonksiyon haline getirip malloc ile işlemlerin yapılmasını sağlar mısın?
