@@ -66,7 +66,7 @@ int main() {
 
 /*  Resmin boyutları float olarak alındığı için satır ve diğer for döngülerinde
     typecasting işlemi uygulanmıştır. resim işleme işlemleri integer değerleriyle uygulanır,
-    uygulanmadığı taktirde program compile time sırasında hata verir. (sorunlar/resim001)
+    uygulanmadığı taktirde program compile time sırasında hata verir.
 */
 
 /*  İç içe for döngüsündeki ilk for'da resmin yüksekliğine yani satıra denk gelen pikseller,
