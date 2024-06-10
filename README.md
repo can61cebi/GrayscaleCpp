@@ -49,6 +49,7 @@ g++ -o grayscale-v1 grayscale-conversion-v1.cpp
 Resimler için RAM'de yer ayırma komutları
 
 ```
+time taskset -c 0-11 ./kopyapasta # Images klasörü içinde çalıştırılmalıdır!
 sudo mkdir -p /mnt/ramdisk
 sudo mount -t tmpfs -o size=11G tmpfs /mnt/ramdisk
 sudo chown -R $(whoami):$(whoami) /mnt/ramdisk/images
