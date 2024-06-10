@@ -69,12 +69,25 @@ sudo rm -r /mnt/ramdisk
 sudo umount /mnt/ramdisk
 ```
 
-Versiyon 2 notları
+Görseller (htop, sistem izlencesi, time taskset, mpstat 1)
 
-> Programın CPU kullanma yüzdeleri:
 
-<img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/resim001.png" width="500">
+<img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-4-thread.png>
 
-> Programın tamamlanma süresi:
+> Versiyon 4 Thread eklendi
 
-<img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/resim002.png" width="500">
+<img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-5-mutex.png" width="500">
+
+> Versiyon 5 Mutex eklendi
+
+<img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-6-vectorization.png" width="500">
+
+> Versiyon 6 Vektörizasyon uygulandı
+
+<img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-7-O2.png" width="500">
+
+> Versiyon 7 Parent - Child thread eklendi (-O2 versiyon)
+
+<img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-7-O3.png" width="500">
+
+> Versiyon 7 Parent - Child thread eklendi (-O3 versiyon)
