@@ -72,7 +72,7 @@ sudo umount /mnt/ramdisk
 Görseller (htop, sistem izlencesi, time taskset, mpstat 1)
 
 
-<img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-4-thread.png>"
+<img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-4-thread.png" width="500">
 
 > Versiyon 4 Thread eklendi
 
