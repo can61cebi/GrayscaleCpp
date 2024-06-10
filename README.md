@@ -66,8 +66,8 @@ time taskset -c 0-11 ./grayscale-v7
 
 ```
 sudo rm -r /mnt/ramdisk/images
+sudo umount -l /mnt/ramdisk
 sudo rm -r /mnt/ramdisk
-sudo umount /mnt/ramdisk
 ```
 
 ## Görseller (htop, sistem izlencesi, time taskset, mpstat 1)
