@@ -72,23 +72,32 @@ sudo umount /mnt/ramdisk
 ## Görseller (htop, sistem izlencesi, time taskset, mpstat 1)
 
 
-> Versiyon 4 Thread eklendi
+
 
 <img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-4-thread.png" width="500">
 
+> Versiyon 4 Thread eklendi
 
-> Versiyon 5 Mutex eklendi
+
 
 <img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-5-mutex.png" width="500">
 
-> Versiyon 6 Vektörizasyon uygulandı
+> Versiyon 5 Mutex eklendi
+
+
 
 <img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-6-vectorization.png" width="500">
 
-> Versiyon 7 Parent - Child thread eklendi (-O2 versiyon)
+> Versiyon 6 Vektörizasyon uygulandı
+
+
 
 <img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-7-O2.png" width="500">
 
-> Versiyon 7 Parent - Child thread eklendi (-O3 versiyon)
+> Versiyon 7 Parent - Child thread eklendi (-O2 versiyon)
+
+
 
 <img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-7-O3.png" width="500">
+
+> Versiyon 7 Parent - Child thread eklendi (-O3 versiyon)
