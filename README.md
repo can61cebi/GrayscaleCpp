@@ -34,7 +34,7 @@ Bu programın v1'de yalnızca 1 adet resmi griye dönüştürmesi amaçlanarak f
 kullanılıp yavaşlatılarak olabilecek en basit şekilde çalışması amaçlanmıştır.
 ```
 
-Compile etme komutları
+## Compile etme komutları
 
 ```
 g++ -o grayscale-v7 grayscale-conversion-v7.cpp -std=c++11 -pthread -pg -O3
@@ -46,7 +46,7 @@ g++ -o grayscale-v2 grayscale-conversion-v2.cpp
 g++ -o grayscale-v1 grayscale-conversion-v1.cpp
 ```
 
-Resimler için RAM'de yer ayırma komutları
+## Resimler için RAM'de yer ayırma komutları
 
 ```
 time taskset -c 0-11 ./kopyapasta # Images klasörü içinde çalıştırılmalıdır!
@@ -55,13 +55,13 @@ sudo mount -t tmpfs -o size=11G tmpfs /mnt/ramdisk
 sudo chown -R $(whoami):$(whoami) /mnt/ramdisk/images
 ```
 
-Programı çalıştırma komutu (12 thread)
+## Programı çalıştırma komutu (12 thread)
 
 ```
 time taskset -c 0-11 ./grayscale-v7
 ```
 
-Resimleri RAM'den silme komutları
+## Resimleri RAM'den silme komutları
 
 ```
 sudo rm -r /mnt/ramdisk/images
@@ -69,25 +69,26 @@ sudo rm -r /mnt/ramdisk
 sudo umount /mnt/ramdisk
 ```
 
-Görseller (htop, sistem izlencesi, time taskset, mpstat 1)
+## Görseller (htop, sistem izlencesi, time taskset, mpstat 1)
 
-
-<img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-4-thread.png" width="500">
 
 > Versiyon 4 Thread eklendi
 
-<img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-5-mutex.png" width="500">
+<img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-4-thread.png" width="500">
+
 
 > Versiyon 5 Mutex eklendi
 
-<img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-6-vectorization.png" width="500">
+<img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-5-mutex.png" width="500">
 
 > Versiyon 6 Vektörizasyon uygulandı
 
-<img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-7-O2.png" width="500">
+<img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-6-vectorization.png" width="500">
 
 > Versiyon 7 Parent - Child thread eklendi (-O2 versiyon)
 
-<img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-7-O3.png" width="500">
+<img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-7-O2.png" width="500">
 
 > Versiyon 7 Parent - Child thread eklendi (-O3 versiyon)
+
+<img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-7-O3.png" width="500">
