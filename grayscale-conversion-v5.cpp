@@ -3,8 +3,13 @@
 #include <iomanip>
 #include <sstream>
 #include <cstdlib>
+#include <thread>
+#include <vector>
+#include <mutex>
 
 using namespace std;
+
+mutex mtx;
 
 bool OverwriteGrayscaleFonksiyonu(const string &dosyaAdi) {
     fstream dosya(dosyaAdi, ios::in | ios::out | ios::binary);
@@ -16,8 +21,8 @@ bool OverwriteGrayscaleFonksiyonu(const string &dosyaAdi) {
     unsigned char baslik[54];
     dosya.read((char*)baslik, 54);
 
-    int genislik = 1088;
-    int yukseklik = 1088;
+    int genislik = 200;
+    int yukseklik = 200;
     int satir = ((genislik * 3) + 3) & (~3);
     unsigned char* veriler = (unsigned char*) malloc(satir);
 
@@ -40,8 +45,11 @@ bool OverwriteGrayscaleFonksiyonu(const string &dosyaAdi) {
             veriler[indis + 1] = gray;
             veriler[indis + 2] = gray;
         }
+
+        mtx.lock();
         dosya.seekp(54 + i * satir, ios::beg);
         dosya.write((char*)veriler, satir);
+        mtx.unlock();
     }
 
     free(veriler);
@@ -49,16 +57,33 @@ bool OverwriteGrayscaleFonksiyonu(const string &dosyaAdi) {
     return true;
 }
 
-int main() {
-    for (int dosyaNumarasi = 1; dosyaNumarasi < 4999; ++dosyaNumarasi) {
+void islemYap(int basla, int bitis) {
+    for (int dosyaNumarasi = basla; dosyaNumarasi <= bitis; ++dosyaNumarasi) {
         stringstream ss;
-        ss << "images/image" << setw(4) << setfill('0') << dosyaNumarasi << ".bmp";
+        ss << "/mnt/ramdisk/images/image" << setw(4) << setfill('0') << dosyaNumarasi << ".bmp";
         string dosyaAdi = ss.str();
 
         if (!OverwriteGrayscaleFonksiyonu(dosyaAdi)) {
             cerr << "Resim griye donusturulemedi." << endl;
             continue;
         }
+    }
+}
+
+int main() {
+    vector<thread> threadler;
+    int dosyaSayisi = 90000;
+    int threadSayisi = 12;
+    int dosyaPerThread = dosyaSayisi / threadSayisi;
+
+    for (int i = 0; i < threadSayisi; ++i) {
+        int basla = i * dosyaPerThread + 1;
+        int bitis = (i == threadSayisi - 1) ? dosyaSayisi : (i + 1) * dosyaPerThread;
+        threadler.push_back(thread(islemYap, basla, bitis));
+    }
+
+    for (auto &t : threadler) {
+        t.join();
     }
 
     return 0;

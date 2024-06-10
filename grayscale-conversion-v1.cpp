@@ -2,8 +2,8 @@
 #include <iostream>
 
 int main() {
-    std::ifstream girenDosya("resimler_renkli/image0001.bmp", std::ios::binary);
-    std::ofstream cikanDosya("resimler_gri/gray_image0001.bmp", std::ios::binary);
+    std::ifstream girenDosya("images/image0001.bmp", std::ios::binary);
+    std::ofstream cikanDosya("images/gray_image0001.bmp", std::ios::binary);
 
     if (!girenDosya.is_open()) {
         std::cerr << "Dosya acilamadi." << std::endl;

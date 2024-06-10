@@ -34,6 +34,40 @@ Bu programın v1'de yalnızca 1 adet resmi griye dönüştürmesi amaçlanarak f
 kullanılıp yavaşlatılarak olabilecek en basit şekilde çalışması amaçlanmıştır.
 ```
 
+Compile etme komutları
+
+```
+g++ -o grayscale-v7 grayscale-conversion-v7.cpp -std=c++11 -pthread -pg -O3
+g++ -o grayscale-v6 grayscale-conversion-v6.cpp -std=c++11 -pthread -O3
+g++ -o grayscale-v5 grayscale-conversion-v5.cpp -std=c++11 -pthread -O3
+g++ -o grayscale-v4 grayscale-conversion-v4.cpp
+g++ -o grayscale-v3 grayscale-conversion-v3.cpp
+g++ -o grayscale-v2 grayscale-conversion-v2.cpp
+g++ -o grayscale-v1 grayscale-conversion-v1.cpp
+```
+
+Resimler için RAM'de yer ayırma komutları
+
+```
+sudo mkdir -p /mnt/ramdisk
+sudo mount -t tmpfs -o size=11G tmpfs /mnt/ramdisk
+sudo chown -R $(whoami):$(whoami) /mnt/ramdisk/images
+```
+
+Programı çalıştırma komutu (12 thread)
+
+```
+time taskset -c 0-11 ./grayscale-v7
+```
+
+Resimleri RAM'den silme komutları
+
+```
+sudo rm -r /mnt/ramdisk/images
+sudo rm -r /mnt/ramdisk
+sudo umount /mnt/ramdisk
+```
+
 Versiyon 2 notları
 
 > Programın CPU kullanma yüzdeleri:
