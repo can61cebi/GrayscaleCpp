@@ -47,44 +47,63 @@ g++ -o grayscale-v4 grayscale-conversion-v4.cpp
 g++ -o grayscale-v3 grayscale-conversion-v3.cpp
 g++ -o grayscale-v2 grayscale-conversion-v2.cpp
 g++ -o grayscale-v1 grayscale-conversion-v1.cpp
-Preparing Images for Processing
-bash
-Copy
+```
+
+### Preparing Images for Processing
+
+```bash
 time taskset -c 0-11 ./kopyapasta  # Run in the "images" directory to manage input files
 sudo mkdir -p /mnt/ramdisk
 sudo mount -t tmpfs -o size=11G tmpfs /mnt/ramdisk
 sudo cp -r ~/Desktop/GrayscaleCpp/images /mnt/ramdisk/
 sudo chown -R $(whoami):$(whoami) /mnt/ramdisk/images
+```
+
 The above commands create a temporary filesystem in RAM to reduce I/O overhead for faster processing.
 
-Running the Program with 12 Threads
-bash
-Copy
+### Running the Program with 12 Threads
+
+```bash
 time taskset -c 0-11 ./grayscale-v7
+```
+
 This pins the process to CPU cores 0–11, ensuring parallel performance on a system with at least 12 cores.
 
-Cleaning Up (Removing Images from RAM)
-bash
-Copy
+### Cleaning Up (Removing Images from RAM)
+
+```bash
 sudo rm -r /mnt/ramdisk/images
 sudo umount -l /mnt/ramdisk
 sudo rm -r /mnt/ramdisk
-Screenshots and Version Highlights
-Version 4
-<img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-4-thread.png" width="500">
+```
+
+## Screenshots and Version Highlights
+
+### Version 4
+
+![Version 4](https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-4-thread.png?raw=true)
+
 Introduced multithreading for parallel processing.
 
-Version 5
-<img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-5-mutex.png" width="500">
+### Version 5
+
+![Version 5](https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-5-mutex.png?raw=true)
+
 Added mutex to handle thread-safe shared data operations.
 
-Version 6
-<img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-6-vectorization.png" width="500">
+### Version 6
+
+![Version 6](https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-6-vectorization.png?raw=true)
+
 Vectorization applied for optimized pixel manipulation.
 
-Version 7
-<img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-7-O2.png" width="500">
+### Version 7
+
+![Version 7 O2](https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-7-O2.png?raw=true)
+
 Spawning parent-child threads. Shown here with the -O2 optimization flag.
 
-<img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-7-O3.png" width="500">
+![Version 7 O3](https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-7-O3.png?raw=true)
+
 Same parent-child approach but compiled with -O3.
+```
