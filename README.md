@@ -83,27 +83,26 @@ sudo rm -r /mnt/ramdisk
 
 <img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-4-thread.png" width="500">
 
-Introduced multithreading for parallel processing.
+> Introduced multithreading for parallel processing.
 
 ### Version 5
 
 <img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-5-mutex.png" width="500">
 
-Added mutex to handle thread-safe shared data operations.
+> Added mutex to handle thread-safe shared data operations.
 
 ### Version 6
 
 <img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-6-vectorization.png" width="500">
 
-Vectorization applied for optimized pixel manipulation.
+> Vectorization applied for optimized pixel manipulation.
 
 ### Version 7
 
 <img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-7-O2.png" width="500">
 
-Spawning parent-child threads. Shown here with the -O2 optimization flag.
+> Spawning parent-child threads. Shown here with the -O2 optimization flag.
 
 <img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-7-O3.png" width="500">
 
-Same parent-child approach but compiled with -O3.
-```
+> Same parent-child approach but compiled with -O3.
