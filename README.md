@@ -81,29 +81,29 @@ sudo rm -r /mnt/ramdisk
 
 ### Version 4
 
-![Version 4](https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-4-thread.png?raw=true  width="500")
+![Version 4]<img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-4-thread.png" width="500">
 
 Introduced multithreading for parallel processing.
 
 ### Version 5
 
-![Version 5](https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-5-mutex.png?raw=true  width="500")
+![Version 5]<img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-5-mutex.png" width="500">
 
 Added mutex to handle thread-safe shared data operations.
 
 ### Version 6
 
-![Version 6](https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-6-vectorization.png?raw=true  width="500")
+![Version 6]<img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-6-vectorization.png" width="500">
 
 Vectorization applied for optimized pixel manipulation.
 
 ### Version 7
 
-![Version 7 O2](https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-7-O2.png?raw=true  width="500")
+![Version 7 O2]<img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-7-O2.png" width="500">
 
 Spawning parent-child threads. Shown here with the -O2 optimization flag.
 
-![Version 7 O3](https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-7-O3.png?raw=true  width="500")
+![Version 7 O3]<img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-7-O3.png" width="500">
 
 Same parent-child approach but compiled with -O3.
 ```
