@@ -1,42 +1,45 @@
 # GrayscaleCpp
 
-Versiyon 1 notları
+A simple project showcasing various implementations of converting bitmap images (`.bmp`) to grayscale in C++ without using the OpenCV library. Each version demonstrates different optimization techniques (e.g., multithreading, mutex usage, vectorization). The goal is to experiment with performance improvements while maintaining a straightforward, pure C++ approach.
 
-```
-JPG yani jpeg dosyası tercih edilmemesinin sebebi JPEG fortamının sıkıştırma ve
-çözme işlemleri, Huffman kodlaması ve DCT (Discrete Cosine Transform) gibi kompleks
-teknikler içerdiği için OpenCV kullanmadan yapılması, görüntü işleme alanında
-uzmanlık gerektirir. Bundan dolayı projede Microsoft'un geliştirdiği
-BMP yani BitMap dosya formatını kullanmayı uygun gördüm.
+---
 
-BMP dosyalarının ilk 54 baytında dosya bilgilerini taşıyan, resmin boyutu ve formatı
-gibi farklı bilgiler bulunur. Bu bilgileri programda unsigned char olarak baslik
-değişkenin içerisinde saklıyoruz. Kendi cektigim resmin boyutlarını da 1088'e 1088 olarak
-ayarladığım için bu programda da genislik ve yukseklik değerlerini sabit olarak aldık.
+## Version 1 Notes
 
-Resmin kırmızı, yeşil, mavi ve gri tonlarındaki verilerin unsigned char olarak
-tutulmasının sebebi char'ın değeri -128 ile 127 arasında olabilir, unsigned char
-0 ile 255 arası değerler alabilir. RGB değerleri de 0 ile 255 arasında bulunur.*/
+> **Why BMP and not JPEG?**  
+> JPEG format involves complex compression and decompression methods (e.g., Huffman coding, DCT), requiring advanced image processing expertise if done from scratch without libraries like OpenCV. Therefore, this project uses the simpler **BMP (BitMap)** format, developed by Microsoft, which fits the needs of this pure C++ approach.
 
-Resmin boyutları float olarak alındığı için satır ve diğer for döngülerinde
-typecasting işlemi uygulanmıştır. resim işleme işlemleri integer değerleriyle uygulanır,
-uygulanmadığı taktirde program compile time sırasında hata verir. (sorunlar/resim001)
+1. **BMP File Header**  
+   - The first 54 bytes contain metadata such as image size, format, etc.
+   - These bytes are stored in an `unsigned char baslik[]` array in the program.
+   - The image dimensions in the project are fixed at **1088×1088** to simplify the logic.
 
-İç içe for döngüsündeki ilk for'da resmin yüksekliğine yani satıra denk gelen pikseller,
-ikinci for'da genişliğe yani sütuna denk gelen pikseller işlenerek griye dönüştürülür.
+2. **Storing Color and Grayscale Values**  
+   - Each pixel's **red (r)**, **green (g)**, **blue (b)**, and **gray** values are stored as `unsigned char`, which can represent values from 0 to 255 (typical for 8-bit color channels).
+   - Since we want integer arithmetic for pixel processing, we often use type casting if a `float` is involved in calculations.
 
-unsigned char gray = (unsigned char)(r * 0.299 + g * 0.587 + b * 0.114) işlemindeki
-amaç, insan gözünün en iyi yeşili algılaması sebebiyle 0.587 ile çarpımıyla resmideki
-en yüksek değere sahip olmasıyken; kırmızı biraz daha az algılanması sebebiyle 0.299,
-mavi de en az algılanmasıyla 0.114 değerleriyle çarpılarak resim gri tonlanmıştır.
+3. **Grayscale Conversion**  
+   - Nested `for` loops traverse rows (height) and columns (width) of the image.
+   - **Weighted Grayscale Formula**:
+     \[
+     \text{gray} = 0.299 \cdot r + 0.587 \cdot g + 0.114 \cdot b
+     \]
+     - Human vision is more sensitive to green, hence the 0.587 factor.
+     - Red is weighted at 0.299.
+     - Blue is weighted at 0.114 (the least sensitive channel).
 
-Bu programın v1'de yalnızca 1 adet resmi griye dönüştürmesi amaçlanarak float
-kullanılıp yavaşlatılarak olabilecek en basit şekilde çalışması amaçlanmıştır.
-```
+4. **Focus of Version 1**  
+   - Only processes a **single** image.
+   - Uses `float` for clarity and simplicity, despite some performance trade-offs.
+   - Demonstrates the **basic approach** to convert an image to grayscale without further optimizations.
 
-## Compile etme komutları
+---
 
-```
+## Compilation Commands
+
+Below are some examples of how to compile various versions of the program. Adjust flags as needed.
+
+```bash
 g++ -o grayscale-v7 grayscale-conversion-v7.cpp -std=c++11 -pthread -pg -O3
 g++ -o grayscale-v6 grayscale-conversion-v6.cpp -std=c++11 -pthread -O3
 g++ -o grayscale-v5 grayscale-conversion-v5.cpp -std=c++11 -pthread -O3
@@ -44,50 +47,44 @@ g++ -o grayscale-v4 grayscale-conversion-v4.cpp
 g++ -o grayscale-v3 grayscale-conversion-v3.cpp
 g++ -o grayscale-v2 grayscale-conversion-v2.cpp
 g++ -o grayscale-v1 grayscale-conversion-v1.cpp
-```
-
-## Resimleri işleme için hazırlama
-
-```
-time taskset -c 0-11 ./kopyapasta # Images klasörü içinde çalıştırılmalıdır!
+Preparing Images for Processing
+bash
+Copy
+time taskset -c 0-11 ./kopyapasta  # Run in the "images" directory to manage input files
 sudo mkdir -p /mnt/ramdisk
 sudo mount -t tmpfs -o size=11G tmpfs /mnt/ramdisk
 sudo cp -r ~/Desktop/GrayscaleCpp/images /mnt/ramdisk/
 sudo chown -R $(whoami):$(whoami) /mnt/ramdisk/images
-```
+The above commands create a temporary filesystem in RAM to reduce I/O overhead for faster processing.
 
-## Programı çalıştırma komutu (12 thread)
-
-```
+Running the Program with 12 Threads
+bash
+Copy
 time taskset -c 0-11 ./grayscale-v7
-```
+This pins the process to CPU cores 0–11, ensuring parallel performance on a system with at least 12 cores.
 
-## Resimleri RAM'den silme komutları
-
-```
+Cleaning Up (Removing Images from RAM)
+bash
+Copy
 sudo rm -r /mnt/ramdisk/images
 sudo umount -l /mnt/ramdisk
 sudo rm -r /mnt/ramdisk
-```
-
-## Görseller (htop, sistem izlencesi, time taskset, mpstat 1)
-
+Screenshots and Version Highlights
+Version 4
 <img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-4-thread.png" width="500">
+Introduced multithreading for parallel processing.
 
-> Versiyon 4 Thread eklendi
-
+Version 5
 <img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-5-mutex.png" width="500">
+Added mutex to handle thread-safe shared data operations.
 
-> Versiyon 5 Mutex eklendi
-
+Version 6
 <img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-6-vectorization.png" width="500">
+Vectorization applied for optimized pixel manipulation.
 
-> Versiyon 6 Vektörizasyon uygulandı
-
+Version 7
 <img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-7-O2.png" width="500">
-
-> Versiyon 7 Parent - Child thread eklendi (-O2 versiyon)
+Spawning parent-child threads. Shown here with the -O2 optimization flag.
 
 <img src="https://github.com/can61cebi/GrayscaleCpp/blob/main/ciktilar/versiyon-7-O3.png" width="500">
-
-> Versiyon 7 Parent - Child thread eklendi (-O3 versiyon)
+Same parent-child approach but compiled with -O3.
